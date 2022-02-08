@@ -8,8 +8,10 @@ const refs = {
     textarea: document.querySelector('textarea'),
     button: document.querySelector('button'),
 };
-populateForm();
+
 const formData = {};
+
+populateForm();
 
 refs.form.addEventListener('input',throttle(onFormInput,500));
 refs.form.addEventListener('submit',onFormSubmit);
@@ -29,8 +31,9 @@ function onFormSubmit (event){
 function populateForm(){
     const saveFormText = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-    if(saveFormText){
-        refs.input.value = saveFormText['email'] || '';
-        refs.textarea.value = saveFormText['message'] || '';
+    if(saveFormText === 0){
+        return;
     }
+    refs.input.value = saveFormText['email'] || '';
+    refs.textarea.value = saveFormText['message'] || '';
 }
