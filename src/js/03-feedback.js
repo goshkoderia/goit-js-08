@@ -6,7 +6,6 @@ const refs = {
     form: document.querySelector('.feedback-form'),
     input: document.querySelector('input'),
     textarea: document.querySelector('textarea'),
-    button: document.querySelector('button'),
 };
 
 const formData = {};
@@ -14,7 +13,6 @@ const formData = {};
 populateForm();
 
 refs.form.addEventListener('input',throttle(onFormInput,500));
-refs.form.addEventListener('submit',onFormSubmit);
 
 function onFormInput (event){
    formData[event.target.name] = event.target.value;
@@ -22,16 +20,17 @@ function onFormInput (event){
    localStorage.setItem('feedback-form-state',JSON.stringify(formData));
 }
 
-function onFormSubmit (event){
-    event.preventDefault();
+refs.form.addEventListener('submit', event=>
+{   event.preventDefault();
     localStorage.removeItem('feedback-form-state');
-    event.target.reset();
-}
+    event.currentTarget.reset();
+   
+});
 
 function populateForm(){
     const saveFormText = JSON.parse(localStorage.getItem('feedback-form-state'));
 
-    if(saveFormText === 0){
+    if(saveFormText === null){
         return;
     }
     refs.input.value = saveFormText['email'] || '';
