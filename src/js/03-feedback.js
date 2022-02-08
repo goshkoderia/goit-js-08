@@ -1,6 +1,6 @@
 import '../css/common.css';
 import '../css/03-feedback.css';
-import {throttle} from 'lodash.throttle';
+import {throttle} from 'lodash';
 
 const refs = {
     form: document.querySelector('.feedback-form'),
