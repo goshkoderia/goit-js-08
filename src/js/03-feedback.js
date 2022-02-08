@@ -1,6 +1,6 @@
 import '../css/common.css';
 import '../css/03-feedback.css';
-import {throttle} from 'lodash';
+import throttle from 'lodash.throttle';
 
 const refs = {
     form: document.querySelector('.feedback-form'),
@@ -30,7 +30,7 @@ function populateForm(){
     const saveFormText = JSON.parse(localStorage.getItem('feedback-form-state'));
 
     if(saveFormText){
-        refs.input.value = saveFormText['email'];
-        refs.textarea.value = saveFormText['message']
+        refs.input.value = saveFormText['email'] || '';
+        refs.textarea.value = saveFormText['message'] || '';
     }
 }
