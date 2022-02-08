@@ -1,8 +1,11 @@
+import '../css/common.css'
 import Player from '@vimeo/player';
+import {throttle} from 'lodash';
+
 
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
-import {throttle} from 'lodash';
+
 
 const onPlay = function(data){
       const stringifyData = JSON.stringify(data);
