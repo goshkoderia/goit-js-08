@@ -16,14 +16,15 @@ refs.form.addEventListener('input',throttle(onFormInput,500));
 
 function onFormInput (event){
    formData[event.target.name] = event.target.value;
+   console.log(FormData);
    localStorage.setItem('feedback-form-state',JSON.stringify(formData));
 }
 
 refs.form.addEventListener('submit', event=>
 {   event.preventDefault();
+    refs.form.reset();
     localStorage.removeItem('feedback-form-state');
-    event.currentTarget.reset();
-   
+    console.log(formData);   
 });
 
 function populateForm(){
@@ -34,4 +35,8 @@ function populateForm(){
     }
     refs.input.value = saveFormText['email'] || '';
     refs.textarea.value = saveFormText['message'] || '';
+
+    formData['email'] = saveFormText['email'] || '';
+    formData['message'] = saveFormText['message'] ||'';
+
 }
